@@ -132,7 +132,7 @@ class PlaywrightConnector {
             throw new Error(`Replay file not found: ${filePath}`);
         }
 
-        const data = JSON.parse(fs.readFileSync(filePath, 'utf-8'));
+        const data = JSON.parse(await fs.readFile(filePath, 'utf-8'));
         this.replayMap.clear();
         for (const req of data) {
             const key = `${req.method}:${req.url}`;
