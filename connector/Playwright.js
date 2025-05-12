@@ -148,8 +148,8 @@ class PlaywrightConnector {
         if (!this.recording || !this.recordedRequests.length) return;
 
         const filePath = path.join(this.recordingsDir, `${this.title}.json`);
-        fs.mkdirSync(this.recordingsDir, { recursive: true });
-        fs.writeFileSync(filePath, JSON.stringify(this.recordedRequests, null, 2));
+        await fs.mkdir(this.recordingsDir, { recursive: true });
+        await fs.writeFile(filePath, JSON.stringify(this.recordedRequests, null, 2));
 
         output.log(`Saved recording: ${filePath}`);
         this.recording = false;
