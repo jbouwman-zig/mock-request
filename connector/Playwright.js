@@ -46,7 +46,7 @@ class PlaywrightConnector {
             // Mock route
             for (const handler of this.routes) {
                 if (handler.method === method &&
-                    handler.urls.some(u => url.includes(u))) {
+                    handler.urls.some(u => new RegExp(u).test(url))) {
                     output.debug(`Mocked ➞ ${method} ${url}`);
                     return handler.callback(route, request);
                 }
